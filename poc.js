@@ -49,6 +49,8 @@ function tryexploit(a_c, p_c){
 			return 0;
 		} else {
 			//alert("Exploit Worked.");
+			alert("Exploit worked, before_len=" + before_len + ", after_len=" + after_len);
+			return 2;
 			
 			for (x = attempts.length - 1; x >= 1; x--) 
 			{ 
