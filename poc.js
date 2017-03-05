@@ -74,17 +74,20 @@ function tryexploit(a_c, p_c){
 		return 0;
 	}
 }
+
+
+tryexploit(2250000, 1);
 //ac = 4250000;
 //pc = 100;
 //ac = 71000;
 //pc = 1;
 //tryexploit(ac, pc);
 
-for(pc=0; pc<100; pc++){
-	for(ac=0; ac < 4250000 ; ac += 1000){
-		tryexploit(ac, pc);
+//for(pc=0; pc<100; pc++){
+//	for(ac=0; ac < 4250000 ; ac += 1000){
+//		tryexploit(ac, pc);
 		//if(tryexploit(ac, pc) == 1){
 		//	alert("Exploit worked! ac=" + ac + ", pc=" + pc);
 		//}
-	}
-}
+//	}
+//}
