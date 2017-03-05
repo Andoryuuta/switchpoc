@@ -86,8 +86,8 @@ function forcetryexploit(ac, pc){
 		}
 	}
 }
-
-forcetryexploit(800000, 50);
+forcetryexploit(80000, 5);
+//forcetryexploit(800000, 50);
 //ac = 4250000;
 //pc = 100;
 //ac = 71000;
