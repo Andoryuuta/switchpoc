@@ -79,7 +79,7 @@ function tryexploit(a_c, p_c){
 }
 
 function forcetryexploit(ac, pc){
-	for(i=0; i< 1000; i++){
+	for(i=0; i< 10000; i++){
 		if(tryexploit(ac, pc) == 1){
 			alert("Finally worked!");
 			break;
@@ -87,7 +87,7 @@ function forcetryexploit(ac, pc){
 	}
 }
 
-forcetryexploit(930000, 50);
+forcetryexploit(800000, 50);
 //ac = 4250000;
 //pc = 100;
 //ac = 71000;
