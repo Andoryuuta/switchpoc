@@ -80,7 +80,7 @@ function tryexploit(a_c, p_c){
 //tryexploit(ac, pc);
 
 for(pc=0; pc<100; pc++){
-	for(ac=0; ac < 4250000 ; ac += 10000){
+	for(ac=0; ac < 4250000 ; ac += 1000){
 		if(tryexploit(ac, pc) == 1){
 			alert("Exploit worked! ac=" + ac + ", pc=" + pc);
 		}
