@@ -45,10 +45,10 @@ function tryexploit(a_c, p_c){
 		var stale = target.stale;
 		var after_len = stale.length;
 		if (before_len == after_len) {
-			//alert("Exploit Failed.");
+			alert("Exploit Failed.");
 			return 0;
 		} else {
-			//alert("Exploit Worked.");
+			alert("Exploit Worked.");
 			return 1;
 			
 			for (x = attempts.length - 1; x >= 1; x--) 
@@ -76,7 +76,7 @@ function tryexploit(a_c, p_c){
 }
 
 
-tryexploit(562500, 1);
+tryexploit(562500, 25);
 //ac = 4250000;
 //pc = 100;
 //ac = 71000;
