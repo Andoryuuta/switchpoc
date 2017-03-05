@@ -67,8 +67,6 @@ function tryexploit(a_c, p_c){
 			
 			alert("after loop");
 		}
-		//stack-view indentificaition...
-		///write offset to expand to the hole memory used by the process.
 	} 
 	catch(err){
 		//alert("Expection:" + err);
@@ -77,7 +75,7 @@ function tryexploit(a_c, p_c){
 }
 
 
-tryexploit(796875, 75);
+tryexploit(896875, 75);
 //ac = 4250000;
 //pc = 100;
 //ac = 71000;
