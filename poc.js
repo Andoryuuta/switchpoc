@@ -49,7 +49,6 @@ function tryexploit(a_c, p_c){
 			return 0;
 		} else {
 			alert("Exploit Worked.");
-			return 1;
 			
 			for (x = attempts.length - 1; x >= 1; x--) 
 			{ 
