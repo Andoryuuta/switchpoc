@@ -76,7 +76,7 @@ function tryexploit(a_c, p_c){
 }
 
 
-tryexploit(562500, 87);
+tryexploit(562500, 81);
 //ac = 4250000;
 //pc = 100;
 //ac = 71000;
