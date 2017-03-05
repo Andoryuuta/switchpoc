@@ -64,6 +64,8 @@ function tryexploit(a_c, p_c){
 					}
 				}
 			}
+			
+			alert("after loop");
 		}
 		//stack-view indentificaition...
 		///write offset to expand to the hole memory used by the process.
