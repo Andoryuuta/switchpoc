@@ -239,6 +239,9 @@ function dgc() {
 				bufs[i][k] += 0x10; 
 				alert("Offset bufs[i][k] by 8");
 				
+				alert(stale[0] === null);
+				alert(stale[0]);
+				
 				if (stale[0] instanceof Uint32Array){
 					alert("Got proper Uint32Array!");
 				} else if (stale[0] instanceof Float32ArrayType){
