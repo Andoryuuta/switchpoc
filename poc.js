@@ -239,7 +239,6 @@ function dgc() {
 				alert("Offset bufs[i][k] by 8");
 				
 				try{
-					alert(stale[0] === null);
 					alert(stale[0]);
 					alert(stale[0] instanceof Uint32Array);
 				}
