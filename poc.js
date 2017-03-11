@@ -179,6 +179,7 @@ function dgc() {
 		alert("Exploit Worked");
 	} else {
 		alert("Exploit Failed");
+		return;
 	}
 	 
 	stale[0] += 0x101;
