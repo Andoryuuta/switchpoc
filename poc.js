@@ -27,7 +27,9 @@
  	mem0[4] = mem1;
  }
 
-// u2d returns a float64 from high and low values
+
+ // This code seems to be taken from a PoC for PSA-2013-0903.
+ // wraps two uint32s into double precision
  function u2d(low, hi) {
  	if (!_dview) _dview = new DataView(new ArrayBuffer(16));
  	_dview.setUint32(0, hi);
