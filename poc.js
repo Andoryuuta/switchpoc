@@ -235,7 +235,7 @@ function dgc() {
 				//	uint8:	uint8_t m_gcData;
 				
 				//ORIGINAL: bufs[i][k] += 0x10; 
-				bufs[i][k] += 0x10; 
+				bufs[i][k] += 0x8; 
 				alert("Offset bufs[i][k] by 8");
 				
 				try{
