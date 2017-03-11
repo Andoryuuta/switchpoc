@@ -256,6 +256,7 @@ function dgc() {
  			}
  		}
  	}
+	alert("Done executing. Did anything happen?")
  	//document.location.reload();
  }
 
